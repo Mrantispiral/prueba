@@ -1,0 +1,455 @@
+[root@localhost ~]# mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 5.1.73 Source distribution
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show DataBases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| test               |
++--------------------+
+3 rows in set (0.06 sec)
+
+mysql> create DataBase isaac;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show DataBases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| isaac              |
+| mysql              |
+| test               |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> use isaac;
+Database changed
+mysql> create table Book(
+    -> id int(10) not null primary key,
+    -> title varchar(160),
+    -> publisher int(25),
+    -> volumen varchar(16),
+    -> series varchar(160),
+    -> edition varchar(16),
+    -> pub_month char(3),
+    -> pub_year int,
+    -> note varchar(256)
+    -> );
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> show DataBases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| isaac              |
+| mysql              |
+| test               |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> show isaac;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'isaac' at line 1
+mysql> use isaac;
+Database changed
+mysql> show isaac;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'isaac' at line 1
+mysql> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> use isaac;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_isaac |
++-----------------+
+| Book            |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> use isaac;
+Database changed
+mysql> create table InBook(
+    -> id int not null primary key,
+    -> bookID integer,
+    -> title varchar(160),
+    -> chapter smallint,
+    -> pages varchar(32),
+    -> type varchar(64),
+    -> note varchar(256)
+    -> );
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> use isaac;
+Database changed
+mysql> create table Techreport(
+    -> id int not null primary key,
+    -> title varchar(160),
+    -> institution int,
+    -> type varchar(64),
+    -> number varchar(16),
+    -> pub_month char(3),
+    -> pub_year int,
+    -> note varchar(156)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> use isaac;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_isaac |
++-----------------+
+| Book            |
+| InBook          |
+| Techreport      |
++-----------------+
+3 rows in set (0.05 sec)
+
+mysql> use isaac;
+Database changed
+mysql> create table Misc(
+    -> id int not null primary key,
+    -> title varchar(160),
+    -> address varchar(160),
+    -> howpublished varchar(160),
+    -> pub_month char(3)
+    -> ,
+    -> pub_year int,
+    -> note varchar(256)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> use isaac;
+Database changed
+mysql> create table Publisher(
+    -> id int not null primary key,
+    -> name varchar(64),
+    -> street varchar(32),
+    -> city varchar(32),
+    -> province varchar(32),
+    -> postal_code char(10),
+    -> country varchar(32)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> use isaac;
+Database changed
+mysql> create table article(
+    -> id int not null primary key,
+    -> title varchar(64),
+    -> joumal varchar(160),
+    -> volume varchar(16),
+    -> number smallint,
+    -> pages varchar(32)
+    -> ,
+    -> pub_month char(3),
+    -> pub_year int,
+    -> note varchar(256)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> use isaac;
+Database changed
+mysql> create table publication(
+    -> id int not null primary key,
+    -> type char(18)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> use isaac;
+Database changed
+mysql> create table Author(
+    -> publicationID int not null primary key,
+    -> PersonID int 
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> use isaac;
+Database changed
+mysql> create table Person(
+    -> id int not null primary key,
+    -> sumame char(32),
+    -> given_names char(32)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> use isaac;
+Database changed
+mysql> create table Editor(
+    -> publicationID int,
+    -> PersonID int
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> use isaac;
+Database changed
+mysql> create table Proceedings(
+    -> id int not null primary key,
+    -> title varchar(160),
+    -> publisher int,
+    -> volume varchar(16),
+    -> series varchar(160),
+    -> organization int,
+    -> pub_month char(3),
+    -> pub_year int,
+    -> note varchar(256)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> 
+mysql> use isaac;
+Database changed
+mysql> create table InProceedngs(
+    -> id int not null primary key,
+    -> proceedingsID int,
+    -> title varchar(160),
+    -> pages varchar(32),
+    -> type varchar(64),
+    -> note varchar(256)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> use isaac;
+Database changed
+mysql> create table Manual(
+    -> id int not null primary key,
+    -> title varchar(160),
+    -> organization int,
+    -> edition varchar(16),
+    -> pub_month char(3),
+    -> pub_year int,
+    -> note varchar(256)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> 
+mysql> use isaac;
+Database changed
+mysql> create table Thesis(
+    -> id int not null primary key,
+    -> title varchar(160),
+    -> school int,
+    -> type varchar(64),
+    -> pub_month char(3),
+    -> pub_year int,
+    -> note varchar(256)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show DataBases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| isaac              |
+| mysql              |
+| test               |
++--------------------+
+4 rows in set (0.02 sec)
+
+mysql> use isaac;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_isaac |
++-----------------+
+| Author          |
+| Book            |
+| Editor          |
+| InBook          |
+| InProceedngs    |
+| Manual          |
+| Misc            |
+| Person          |
+| Proceedings     |
+| Publisher       |
+| Techreport      |
+| Thesis          |
+| article         |
+| publication     |
++-----------------+
+14 rows in set (0.00 sec)
+
+mysql> use Author;
+ERROR 1049 (42000): Unknown database 'Author'
+mysql> show tables Author;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Author' at line 1
+mysql> 
+mysql> describe article;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| id        | int(11)      | NO   | PRI | NULL    |       |
+| title     | varchar(64)  | YES  |     | NULL    |       |
+| joumal    | varchar(160) | YES  |     | NULL    |       |
+| volume    | varchar(16)  | YES  |     | NULL    |       |
+| number    | smallint(6)  | YES  |     | NULL    |       |
+| pages     | varchar(32)  | YES  |     | NULL    |       |
+| pub_month | char(3)      | YES  |     | NULL    |       |
+| pub_year  | int(11)      | YES  |     | NULL    |       |
+| note      | varchar(256) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+9 rows in set (0.05 sec)
+
+mysql> describe article;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| id        | int(11)      | NO   | PRI | NULL    |       |
+| title     | varchar(64)  | YES  |     | NULL    |       |
+| joumal    | varchar(160) | YES  |     | NULL    |       |
+| volume    | varchar(16)  | YES  |     | NULL    |       |
+| number    | smallint(6)  | YES  |     | NULL    |       |
+| pages     | varchar(32)  | YES  |     | NULL    |       |
+| pub_month | char(3)      | YES  |     | NULL    |       |
+| pub_year  | int(11)      | YES  |     | NULL    |       |
+| note      | varchar(256) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+9 rows in set (0.01 sec)
+
+mysql> describe Person;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| id          | int(11)  | NO   | PRI | NULL    |       |
+| sumame      | char(32) | YES  |     | NULL    |       |
+| given_names | char(32) | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> use isaac;
+Database changed
+mysql> alter table Author add constraint foreign key (publicationID) references Book (id); 
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe Author;
++---------------+---------+------+-----+---------+-------+
+| Field         | Type    | Null | Key | Default | Extra |
++---------------+---------+------+-----+---------+-------+
+| publicationID | int(11) | NO   | PRI | NULL    |       |
+| PersonID      | int(11) | YES  |     | NULL    |       |
++---------------+---------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> alter table Book add constraint foreign key (publisher) references Publisher (id); 
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Proceedings add constraint foreign key (publisher) references Publisher (id); 
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Proceedings add constraint foreign key (organization) references Institution  (id); 
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table InBook add constraint foreign key (id) references Publication  (id); 
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Techreport add constraint foreign key (id) references Publication  (id); 
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Techreport add constraint foreign key (institution) references Institutionn  (id); 
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Misc add constraint foreign key (id) references Publication  (id); 
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Article add constraint foreign key (id) references Publication  (id); 
+ERROR 1146 (42S02): Table 'isaac.Article' doesn't exist
+mysql> alter table article add constraint foreign key (id) references Publication  (id); 
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Editor add constraint foreign key (publicationID) references Publication  (id); 
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table InProceedings  add constraint foreign key (id) references Publication  (id); 
+ERROR 1146 (42S02): Table 'isaac.InProceedings' doesn't exist
+mysql> alter table inProceedings  add constraint foreign key (id) references Publication  (id); 
+ERROR 1146 (42S02): Table 'isaac.inProceedings' doesn't exist
+mysql> alter table inProceedings  add constraint foreign key (id) references Publication  (id); 
+ERROR 1146 (42S02): Table 'isaac.inProceedings' doesn't exist
+mysql> use isaac;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_isaac |
++-----------------+
+| Author          |
+| Book            |
+| Editor          |
+| InBook          |
+| InProceedngs    |
+| Manual          |
+| Misc            |
+| Person          |
+| Proceedings     |
+| Publisher       |
+| Techreport      |
+| Thesis          |
+| article         |
+| publication     |
++-----------------+
+14 rows in set (0.00 sec)
+
+mysql> alter table InProceedngs  add constraint foreign key (id) references Publication  (id); 
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table InProceedngs  add constraint foreign key (procedingsID) references Publication  (id); 
+ERROR 1072 (42000): Key column 'procedingsID' doesn't exist in table
+mysql> alter table InProceedngs  add constraint foreign key (proceedingsID) references Publication  (id); 
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Manual  add constraint foreign key (id) references Publication  (id); 
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Manual  add constraint foreign key (organization) references Institution  (id); 
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Institution  add constraint foreign key (id) references Publication  (id); 
+ERROR 1146 (42S02): Table 'isaac.Institution' doesn't exist
+mysql> alter table Institution  add constraint foreign key (id) references Publication  (id); 
+ERROR 1146 (42S02): Table 'isaac.Institution' doesn't exist
+mysql> use isaac;
+Database changed
+mysql> create table Institution(
+    -> id int not null primary key,
+    -> name varchar(64),
+    -> street varchar(64),
+    -> city varchar(32),
+    -> province varchar(32),
+    -> postal_code char(10),
+    -> country varchar(32)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> alter table Institution  add constraint foreign key (id) references Publication  (id); 
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> 
